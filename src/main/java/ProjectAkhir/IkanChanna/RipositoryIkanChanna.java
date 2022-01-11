@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
  * @author HP
  */
 @Repository
-public interface RipositoryIkanChanna extends JpaRepository<Channa, Integer>{
+public interface RipositoryIkanChanna extends JpaRepository<Channahomestay, Integer>{
     
 }

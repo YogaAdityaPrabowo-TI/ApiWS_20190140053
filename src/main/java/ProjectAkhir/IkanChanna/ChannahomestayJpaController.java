@@ -20,9 +20,9 @@ import javax.persistence.criteria.Root;
  *
  * @author HP
  */
-public class ChannaJpaController implements Serializable {
+public class ChannahomestayJpaController implements Serializable {
 
-    public ChannaJpaController(EntityManagerFactory emf) {
+    public ChannahomestayJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProjectAkhir_IkanChanna_jar_0.0.1-SNAPSHOTPU");
@@ -31,21 +31,21 @@ public class ChannaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public ChannaJpaController() {
+    public ChannahomestayJpaController() {
     }
     
     
 
-    public void create(Channa channa) throws PreexistingEntityException, Exception {
+    public void create(Channahomestay channahomestay) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(channa);
+            em.persist(channahomestay);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findChanna(channa.getIdIkan()) != null) {
-                throw new PreexistingEntityException("Channa " + channa + " already exists.", ex);
+            if (findChannahomestay(channahomestay.getIdikan()) != null) {
+                throw new PreexistingEntityException("Channahomestay " + channahomestay + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -55,19 +55,19 @@ public class ChannaJpaController implements Serializable {
         }
     }
 
-    public void edit(Channa channa) throws NonexistentEntityException, Exception {
+    public void edit(Channahomestay channahomestay) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            channa = em.merge(channa);
+            channahomestay = em.merge(channahomestay);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = channa.getIdIkan();
-                if (findChanna(id) == null) {
-                    throw new NonexistentEntityException("The channa with id " + id + " no longer exists.");
+                Integer id = channahomestay.getIdikan();
+                if (findChannahomestay(id) == null) {
+                    throw new NonexistentEntityException("The channahomestay with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -83,14 +83,14 @@ public class ChannaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Channa channa;
+            Channahomestay channahomestay;
             try {
-                channa = em.getReference(Channa.class, id);
-                channa.getIdIkan();
+                channahomestay = em.getReference(Channahomestay.class, id);
+                channahomestay.getIdikan();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The channa with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The channahomestay with id " + id + " no longer exists.", enfe);
             }
-            em.remove(channa);
+            em.remove(channahomestay);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -99,19 +99,19 @@ public class ChannaJpaController implements Serializable {
         }
     }
 
-    public List<Channa> findChannaEntities() {
-        return findChannaEntities(true, -1, -1);
+    public List<Channahomestay> findChannahomestayEntities() {
+        return findChannahomestayEntities(true, -1, -1);
     }
 
-    public List<Channa> findChannaEntities(int maxResults, int firstResult) {
-        return findChannaEntities(false, maxResults, firstResult);
+    public List<Channahomestay> findChannahomestayEntities(int maxResults, int firstResult) {
+        return findChannahomestayEntities(false, maxResults, firstResult);
     }
 
-    private List<Channa> findChannaEntities(boolean all, int maxResults, int firstResult) {
+    private List<Channahomestay> findChannahomestayEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Channa.class));
+            cq.select(cq.from(Channahomestay.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -123,20 +123,20 @@ public class ChannaJpaController implements Serializable {
         }
     }
 
-    public Channa findChanna(Integer id) {
+    public Channahomestay findChannahomestay(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Channa.class, id);
+            return em.find(Channahomestay.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getChannaCount() {
+    public int getChannahomestayCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Channa> rt = cq.from(Channa.class);
+            Root<Channahomestay> rt = cq.from(Channahomestay.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

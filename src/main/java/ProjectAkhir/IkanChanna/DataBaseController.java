@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam; 
 
 
 /**
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author HP
  */
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/channa")
 public class DataBaseController {
@@ -28,30 +30,36 @@ public class DataBaseController {
     @Autowired
     RipositoryIkanChanna repositoryIkanChanna;
             
-    @PostMapping(value = "/addchanna")
-    public Channa addchanna(@RequestBody Channa Param)
+    @PostMapping("/addchanna")
+    public Channahomestay addchanna(@RequestBody Channahomestay Param)
     {
         repositoryIkanChanna.save(Param);
         return Param;
     }
     
-    @GetMapping(value = "/allchanna")
-    public List<Channa> allchanna()
+    @GetMapping("/allchanna")
+    public List<Channahomestay> allchanna()
     {
         return repositoryIkanChanna.findAll();
     }
     
-    @PutMapping(value = "/updatechanna")
-    public Channa updatechanna(@RequestBody Channa Param)
+    @GetMapping("/allchannabyid")
+    public Channahomestay getthrift(@RequestParam int id)
+    {
+        return repositoryIkanChanna.findById(id).get();
+    }
+    
+    @PutMapping("/updatechanna")
+    public Channahomestay updatechanna(@RequestBody Channahomestay Param)
     {
        return repositoryIkanChanna.save(Param);
     }
     
-    @DeleteMapping(value = "/hapuschanna")
-    public List<Channa> hapuschanna(@RequestParam int id)
+    @DeleteMapping("/hapuschanna")
+    public List<Channahomestay> hapuschanna(@RequestParam int id)
     {
         repositoryIkanChanna.deleteById(id);
-        List<Channa> channalist = repositoryIkanChanna.findAll();
+        List<Channahomestay> channalist = repositoryIkanChanna.findAll();
         return channalist;
     }
 }

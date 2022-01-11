@@ -12,27 +12,29 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author HP
  */
 @Entity
-@Table(name = "channa")
+@Table(name = "channahomestay")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Channa.findAll", query = "SELECT c FROM Channa c"),
-    @NamedQuery(name = "Channa.findByIdIkan", query = "SELECT c FROM Channa c WHERE c.idIkan = :idIkan"),
-    @NamedQuery(name = "Channa.findByJenisikan", query = "SELECT c FROM Channa c WHERE c.jenisikan = :jenisikan"),
-    @NamedQuery(name = "Channa.findBySize", query = "SELECT c FROM Channa c WHERE c.size = :size"),
-    @NamedQuery(name = "Channa.findByKualitas", query = "SELECT c FROM Channa c WHERE c.kualitas = :kualitas"),
-    @NamedQuery(name = "Channa.findByHarga", query = "SELECT c FROM Channa c WHERE c.harga = :harga")})
-public class Channa implements Serializable {
+    @NamedQuery(name = "Channahomestay.findAll", query = "SELECT c FROM Channahomestay c"),
+    @NamedQuery(name = "Channahomestay.findByIdikan", query = "SELECT c FROM Channahomestay c WHERE c.idikan = :idikan"),
+    @NamedQuery(name = "Channahomestay.findByJenisikan", query = "SELECT c FROM Channahomestay c WHERE c.jenisikan = :jenisikan"),
+    @NamedQuery(name = "Channahomestay.findBySize", query = "SELECT c FROM Channahomestay c WHERE c.size = :size"),
+    @NamedQuery(name = "Channahomestay.findByKualitas", query = "SELECT c FROM Channahomestay c WHERE c.kualitas = :kualitas"),
+    @NamedQuery(name = "Channahomestay.findByHarga", query = "SELECT c FROM Channahomestay c WHERE c.harga = :harga")})
+public class Channahomestay implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "id_ikan")
-    private Integer idIkan;
+    @Column(name = "idikan")
+    private Integer idikan;
     @Column(name = "jenisikan")
     private String jenisikan;
     @Column(name = "size")
@@ -42,19 +44,19 @@ public class Channa implements Serializable {
     @Column(name = "harga")
     private String harga;
 
-    public Channa() {
+    public Channahomestay() {
     }
 
-    public Channa(Integer idIkan) {
-        this.idIkan = idIkan;
+    public Channahomestay(Integer idikan) {
+        this.idikan = idikan;
     }
 
-    public Integer getIdIkan() {
-        return idIkan;
+    public Integer getIdikan() {
+        return idikan;
     }
 
-    public void setIdIkan(Integer idIkan) {
-        this.idIkan = idIkan;
+    public void setIdikan(Integer idikan) {
+        this.idikan = idikan;
     }
 
     public String getJenisikan() {
@@ -92,18 +94,18 @@ public class Channa implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idIkan != null ? idIkan.hashCode() : 0);
+        hash += (idikan != null ? idikan.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Channa)) {
+        if (!(object instanceof Channahomestay)) {
             return false;
         }
-        Channa other = (Channa) object;
-        if ((this.idIkan == null && other.idIkan != null) || (this.idIkan != null && !this.idIkan.equals(other.idIkan))) {
+        Channahomestay other = (Channahomestay) object;
+        if ((this.idikan == null && other.idikan != null) || (this.idikan != null && !this.idikan.equals(other.idikan))) {
             return false;
         }
         return true;
@@ -111,7 +113,7 @@ public class Channa implements Serializable {
 
     @Override
     public String toString() {
-        return "ProjectAkhir.IkanChanna.Channa[ idIkan=" + idIkan + " ]";
+        return "ProjectAkhir.IkanChanna.Channahomestay[ idikan=" + idikan + " ]";
     }
     
 }
